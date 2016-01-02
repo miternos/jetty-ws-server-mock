@@ -1,0 +1,56 @@
+<?xml version='1.0' encoding='UTF-8'?><xs:schema targetNamespace="http://messaging.miternos.com/" version="1.0" xmlns:tns="http://messaging.miternos.com/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xs:element name="send" type="tns:send"/>
+<xs:element name="sendResponse" type="tns:sendResponse"/>
+<xs:complexType name="send">
+    <xs:sequence>
+      <xs:element name="sender" type="tns:sender"/>
+      <xs:element name="receiverMsisdn" type="xs:string"/>
+      <xs:element name="message" type="tns:message"/>
+      <xs:element name="transactionId" type="xs:string"/>
+      <xs:element name="reportingEntity" nillable="true" type="tns:reportingEntity"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="sender">
+    <xs:sequence>
+      <xs:element name="shortCode" nillable="true" type="xs:string"/>
+      <xs:element name="originationName" nillable="true" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="message">
+    <xs:sequence>
+      <xs:element name="content" type="xs:string"/>
+      <xs:element name="language" nillable="true" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="reportingEntity">
+    <xs:sequence>
+      <xs:element name="notificationType" nillable="true" type="xs:int"/>
+      <xs:element name="offerId" nillable="true" type="xs:string"/>
+       <xs:element name="externalOfferId" nillable="true" type="xs:string"/>
+      <xs:element name="campaignId" nillable="true" type="xs:string"/>
+      <xs:element name="notificationCreationDate" nillable="true" type="xs:string"/>
+      <xs:element name="intervalDetails" nillable="true" type="tns:intervalDetails"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="intervalDetails">
+    <xs:sequence>
+      <xs:element name="intervalId" nillable="true" type="xs:string"/>
+      <xs:element name="lastReason" nillable="true" type="xs:int"/>
+      <xs:element name="startDate" nillable="true" type="xs:string"/>
+      <xs:element name="endDate" nillable="true" type="xs:string"/>
+      <xs:element name="lastCollectedPrice" nillable="true" type="xs:double"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="sendResponse">
+    <xs:sequence>
+      <xs:element name="return" type="tns:sendMessageResponse"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="sendMessageResponse">
+    <xs:sequence>
+      <xs:element name="statusCode" type="xs:string"/>
+      <xs:element name="errorCode" nillable="true" type="xs:string"/>
+      <xs:element name="errorDescription" nillable="true" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>
